@@ -64,14 +64,14 @@ ingress:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     cert-manager.io/cluster-issuer: letsencrypt-staging
   hosts:
-    - host: "k8s-default-apigatew-f4497c1aae-1775665988.eu-north-1.elb.amazonaws.com"
+    - host: "eksmedz.duckdns.org"
       paths:
         - path: /
           pathType: Prefix
   tls:
     - secretName: api-gateway-tls
       hosts:
-        - "k8s-default-apigatew-f4497c1aae-1775665988.eu-north-1.elb.amazonaws.com"
+        - "eksmedz.duckdns.org"
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
