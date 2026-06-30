@@ -61,18 +61,14 @@ ingress:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/group.name: petclinic
-    cert-manager.io/cluster-issuer: letsencrypt-staging
   hosts:
     - host: "eksmedz.duckdns.org"
       paths:
         - path: /
           pathType: Prefix
-  tls:
-    - secretName: api-gateway-tls
-      hosts:
-        - "eksmedz.duckdns.org"
+  tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
