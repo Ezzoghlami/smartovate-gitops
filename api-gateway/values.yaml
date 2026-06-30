@@ -61,13 +61,17 @@ ingress:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    cert-manager.io/cluster-issuer: letsencrypt-staging
   hosts:
-    - host: ""
+    - host: "k8s-default-apigatew-f4497c1aae-1775665988.eu-north-1.elb.amazonaws.com"
       paths:
         - path: /
           pathType: Prefix
-  tls: []
+  tls:
+    - secretName: api-gateway-tls
+      hosts:
+        - "k8s-default-apigatew-f4497c1aae-1775665988.eu-north-1.elb.amazonaws.com"
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
