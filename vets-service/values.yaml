@@ -9,7 +9,7 @@ replicaCount: 1
 image:
   repository: 014498640042.dkr.ecr.eu-north-1.amazonaws.com/smartovate-eks/spring-petclinic-vets-service
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: "abcb43c084c0bbe05f3a0ec57b6fe278641eede5"
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
