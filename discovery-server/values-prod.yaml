@@ -1,5 +1,5 @@
 # Environnement PROD — ressources maximales, haute disponibilité
-replicaCount: 2
+replicaCount: 1
 
 resources:
   requests:
