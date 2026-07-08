@@ -6,3 +6,6 @@ resources:
   limits:
     cpu: 500m
     memory: 768Mi
+
+ingress:
+  enabled: false
