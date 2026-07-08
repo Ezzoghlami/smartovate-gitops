@@ -173,3 +173,5 @@ affinity: {}
 extraEnv:
   - name: SPRING_CLOUD_CONFIG_SERVER_GIT_URI
     value: "https://github.com/Ezzoghlami/spring-petclinic-microservices-config"
+  - name: SPRING_CLOUD_CONFIG_SERVER_GIT_DEFAULT_LABEL
+    value: "main"
