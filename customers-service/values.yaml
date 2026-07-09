@@ -169,3 +169,12 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+startupProbe:
+  httpGet:
+    path: /actuator/health
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  failureThreshold: 24
+  timeoutSeconds: 5
