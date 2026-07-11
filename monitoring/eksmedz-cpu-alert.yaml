@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: eksmedz-custom-alerts
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  groups:
+    - name: eksmedz.custom.rules
+      rules:
+        - alert: EksmedzContainerCPUHigh
+          expr: |
+            sum by (namespace, pod, container) (
+              rate(container_cpu_usage_seconds_total{namespace=~"default|eksmedz-.*", container!=""}[5m])
+            )
+            /
+            sum by (namespace, pod, container) (
+              kube_pod_container_resource_limits{namespace=~"default|eksmedz-.*", resource="cpu"}
+            )
+            > 0.8
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "CPU élevé sur {{ $labels.namespace }}/{{ $labels.pod }}"
+            description: "Le conteneur {{ $labels.container }} dans {{ $labels.pod }} ({{ $labels.namespace }}) utilise plus de 80% de sa limite CPU depuis 5 minutes."
