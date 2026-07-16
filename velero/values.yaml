@@ -1,0 +1,22 @@
+configuration:
+  backupStorageLocation:
+  - bucket: smartovate-eksmedz-velero-backups
+    config:
+      region: eu-north-1
+    provider: aws
+  volumeSnapshotLocation:
+  - config:
+      region: eu-north-1
+    provider: aws
+credentials:
+  useSecret: false
+initContainers:
+- image: velero/velero-plugin-for-aws:v1.10.0
+  name: velero-plugin-for-aws
+  volumeMounts:
+  - mountPath: /target
+    name: plugins
+serviceAccount:
+  server:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::014498640042:role/AmazonEKS_VeleroRole-smartovate

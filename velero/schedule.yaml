@@ -1,0 +1,14 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: eksmedz-daily-backup
+  namespace: velero
+spec:
+  schedule: "0 2 * * *"
+  template:
+    includedNamespaces:
+      - eksmedz-dev
+      - eksmedz-staging
+      - eksmedz-prod
+      - default
+    ttl: 720h0m0s
