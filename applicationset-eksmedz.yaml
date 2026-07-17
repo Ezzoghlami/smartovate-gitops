@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: eksmedz-services
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - service: admin-server
+                - service: api-gateway
+                - service: config-server
+                - service: customers-service
+                - service: discovery-server
+                - service: vets-service
+                - service: visits-service
+          - list:
+              elements:
+                - env: dev
+                - env: staging
+                - env: prod
+  template:
+    metadata:
+      name: '{{service}}-{{env}}'
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Ezzoghlami/smartovate-gitops.git
+        targetRevision: main
+        path: '{{service}}'
+        helm:
+          releaseName: '{{service}}'
+          valueFiles:
+            - values.yaml
+            - 'values-{{env}}.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'eksmedz-{{env}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
