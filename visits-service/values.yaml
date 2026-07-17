@@ -36,6 +36,7 @@ podAnnotations:
   instrumentation.opentelemetry.io/inject-nodejs: "false"
   instrumentation.opentelemetry.io/inject-python: "false"
   instrumentation.opentelemetry.io/inject-dotnet: "false"
+  eksmedz.io/canary-demo-version: "v2-canary-test"
 # This is for setting Kubernetes Labels to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels: {}
