@@ -13,6 +13,10 @@ spec:
       {{- include "visits-service.selectorLabels" . | nindent 6 }}
   strategy:
     canary:
+      analysis:
+        templates:
+          - templateName: {{ include "visits-service.fullname" . }}-canary-check
+        startingStep: 1
       steps:
         - setWeight: 20
         - pause: { duration: 60 }
