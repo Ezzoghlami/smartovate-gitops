@@ -5,10 +5,10 @@ metadata:
   namespace: eksmedz-staging
 spec:
   hard:
-    requests.cpu: "4"
-    requests.memory: 6Gi
-    limits.cpu: "8"
-    limits.memory: 8Gi
+    requests.cpu: "8"
+    requests.memory: 8Gi
+    limits.cpu: "16"
+    limits.memory: 10Gi
     pods: "20"
 ---
 apiVersion: v1

@@ -5,10 +5,10 @@ metadata:
   namespace: eksmedz-prod
 spec:
   hard:
-    requests.cpu: "6"
-    requests.memory: 8Gi
-    limits.cpu: "10"
-    limits.memory: 12Gi
+    requests.cpu: "10"
+    requests.memory: 10Gi
+    limits.cpu: "18"
+    limits.memory: 14Gi
     pods: "20"
 ---
 apiVersion: v1
