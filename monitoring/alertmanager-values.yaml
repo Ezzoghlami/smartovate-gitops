@@ -23,6 +23,10 @@ alertmanager:
         - matchers:
             - severity =~ "critical|warning"
           receiver: 'email-notifications'
+          continue: true
+        - matchers:
+            - alertname =~ "KubePodCrashLooping|EksmedzContainerCPUHigh"
+          receiver: 'ai-analyzer-webhook'
           continue: false
     receivers:
       - name: 'null'
@@ -30,3 +34,7 @@ alertmanager:
         email_configs:
           - to: 'zoghlamimohamed444@gmail.com'
             send_resolved: true
+      - name: 'ai-analyzer-webhook'
+        webhook_configs:
+          - url: 'http://ai-incident-analyzer.ai-incident-analyzer.svc.cluster.local:5001/webhook'
+            send_resolved: false
